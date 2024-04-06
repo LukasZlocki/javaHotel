@@ -22,12 +22,42 @@ public class Client {
         this.email = email;
     }
 
-    public LocalDate getAge(){
-        return this.birthDate;
+    public String getId() {
+        return id;
     }
 
-    public String getFullName(){
-        return String.format("%s %s", this.firstName, this.lastName);
+    public String getFirstName() {
+        return firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getCountry(){
+        return country;
+    }
+
+    public int getNumberPhone(){
+        return numberPhone;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public int getAge() {
+        if (this.birthDate == null) {
+            return 0;
+        }
+        return LocalDate.now().getYear() - this.birthDate.getYear();
+    }
+
+    public String getFullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
 }
