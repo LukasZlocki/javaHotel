@@ -11,7 +11,7 @@ public class Client {
     private int numberPhone;
     private String email;
 
-    // constructor
+    // constructor //
     public Client(String id, String firstName, String lastName, LocalDate birthDate, String country, int numberPhone, String email) {
         this.id = id;
         this.firstName = firstName;
