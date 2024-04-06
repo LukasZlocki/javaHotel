@@ -8,7 +8,7 @@ public class RoomReservation {
     private Client client;
     private Room room;
 
-    // constructor
+    // constructor //
     public RoomReservation(LocalDate date, boolean isConfirmed, Client client, Room room){
         this.date = date;
         this.isConfirmed = isConfirmed;
@@ -18,5 +18,22 @@ public class RoomReservation {
 
     public void confirmReservation(){
         this.isConfirmed = true;
+    }
+
+    // Getters //
+    public Client getClient(){
+        return client;
+    }
+
+    public Room getRoom(){
+        return room;
+    }
+
+    public LocalDate getDate(){
+        return date;
+    }
+
+    public boolean isConfirmed(){
+        return isConfirmed;
     }
 }
