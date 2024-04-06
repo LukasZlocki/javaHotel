@@ -7,13 +7,19 @@ public class Client {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
+    private String country;
+    private int numberPhone;
+    private String email;
 
     // constructor
-    public Client(String id, String firstName, String lastName, LocalDate birthDate){
+    public Client(String id, String firstName, String lastName, LocalDate birthDate, String country, int numberPhone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.country = country;
+        this.numberPhone = numberPhone;
+        this.email = email;
     }
 
     public LocalDate getAge(){
