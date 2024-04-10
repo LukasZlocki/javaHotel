@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         // create client instance //
-        Client client1 = new Client("001", "klient1firstname", "klient1lasttname", LocalDate.of(1994, 9, 21), "Poland", 123456789, "client1@example.com");
+        //Client client1 = new Client("001", "klient1firstname", "klient1lasttname", LocalDate.of(2994, 9, 21), "Poland", 123456789, "client1@example.com");
+        Client client1 = new Client("001", "klient1firstname", "klient1lasttname",null, "Poland", 123456789, "client1@example.com");
 
         // create room instance //
         Room room1 = new Room("101", "Standard Room", 25.0, 1, true, false, true, 2, true, true);
