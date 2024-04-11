@@ -6,4 +6,8 @@ public abstract class SpecialService {
     // additional extra services //
     public abstract void orderClothesCleaning();
     public abstract void orderNetflix();
+
+    public String getServiceName(){
+        return name;
+    }
 }
