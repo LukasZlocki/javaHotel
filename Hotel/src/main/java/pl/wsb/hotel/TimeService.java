@@ -1,9 +1,11 @@
 package pl.wsb.hotel;
 
+import java.time.LocalTime;
+
 public class TimeService extends SpecialService{
     @Override
     public void orderService() {
-        // code body here... //
+        System.out.println("Actual time: " + LocalTime.now());
     }
 
     @Override
