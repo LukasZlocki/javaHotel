@@ -1,9 +1,9 @@
 package pl.wsb.hotel;
 
 public abstract class SpecialService {
-    String name;
-    abstract void orderService();
+    private String name;
+    public abstract void orderService();
     // additional extra services //
-    abstract void orderClothesCleaning();
-    abstract void orderNetflix();
+    public abstract void orderClothesCleaning();
+    public abstract void orderNetflix();
 }
