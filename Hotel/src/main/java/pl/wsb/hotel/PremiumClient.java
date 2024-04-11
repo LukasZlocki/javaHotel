@@ -11,7 +11,7 @@ public class PremiumClient extends Client {
         super(id, firstName, lastName, birthDate, country, numberPhone, email);
         this.accountType = accountType;
     }
-
+    @Override
     public String getFullName(){
         return "[ " + accountType + " ] " + getFirstName() + " " + getLastName();
     }
