@@ -15,16 +15,16 @@ public class TimeService extends SpecialService {
 
     @Override
     public void helpService() {
-        // add code here ... //
+        System.out.println("Time help request recieved. We will call you within minute.");
     }
 
     @Override
     public void payForService() {
-        // add code here ... //
+        System.out.println("Time service payed.");
     }
 
     @Override
     public void claimService() {
-        // add code here ... //
+        System.out.println("Time service claim recieved.");
     }
 }
