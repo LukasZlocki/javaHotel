@@ -3,9 +3,7 @@ package pl.wsb.hotel;
 import java.time.LocalDate;
 
 public class Main {
-
     public static void main(String[] args) {
-
         // create client instance //
         //Client client1 = new Client("001", "klient1firstname", "klient1lasttname", LocalDate.of(2994, 9, 21), "Poland", 123456789, "client1@example.com");
         Client client1 = new Client("001", "klient1firstname", "klient1lasttname",null, "Poland", 123456789, "client1@example.com");
@@ -34,7 +32,7 @@ public class Main {
 
         System.out.println("\nLAB02 class extensions");
         // add client premium //
-        PremiumClient premiumClient1 = new PremiumClient("001", "klient1firstname", "klient1lasttname",null, "Poland", 123456789, "client1@example.com", PremiumClient.premiumAccountType.PREMIUM);
-        System.out.println("premium client name: " + premiumClient1.getFullName());
+        PremiumClient premiumClient2 = new PremiumClient("001", "premiumklient2firstname", "premiumklient2lastname",null, "Poland", 123456789, "premiumclient2@example.com", PremiumClient.premiumAccountType.PREMIUM);
+        System.out.println("premium client name: " + premiumClient2.getFullName());
     }
 }
