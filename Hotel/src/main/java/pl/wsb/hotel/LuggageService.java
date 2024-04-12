@@ -14,17 +14,17 @@ public class LuggageService extends SpecialService {
 
     @Override
     public void helpService() {
-        // add code here ... //
+        System.out.println("Luggage help service request recieved. We will call you within minute.");
     }
 
     @Override
     public void payForService() {
-        // add code here ... //
+        System.out.println("Luggage service payed");
     }
 
     @Override
     public void claimService() {
-        // add code here ... //
+        System.out.println("Luggage claim recieved.");
     }
 
 }
