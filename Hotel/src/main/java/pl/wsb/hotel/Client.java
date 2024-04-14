@@ -52,9 +52,10 @@ public class Client {
 
     public int getAge() {
         if (this.birthDate == null) {
-            return 0;
+            return 0; // nadano specjalne znaczenie, dodac obsluge wyjatku. A co gdy dat w przyszlosci ? co sie staine jak dzialac.
         }
         return LocalDate.now().getYear() - this.birthDate.getYear();
+
     }
 
     public String getFullName() {
