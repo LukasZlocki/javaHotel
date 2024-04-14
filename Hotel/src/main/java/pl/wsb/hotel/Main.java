@@ -30,6 +30,7 @@ public class Main {
         System.out.println("\nAfter confirmation:");
         System.out.println("Confirmed: " + reservation1.isConfirmed());
 
+        // tests lab 02 //
         System.out.println("\nLAB02 class extensions");
         // add client premium //
         PremiumClient premiumClient2 = new PremiumClient("001", "premiumklient2firstname", "premiumklient2lastname",null, "Poland", 123456789, "premiumclient2@example.com", PremiumClient.premiumAccountType.PREMIUM);
