@@ -13,6 +13,7 @@ public class PremiumClient extends Client {
     }
     @Override
     public String getFullName(){
-        return "[ " + accountType + " ] " + getFirstName() + " " + getLastName();
+        //return "[ " + accountType + " ] " + getFirstName() + " " + getLastName();
+        return "[ " + accountType + " ] " + super.getFullName();
     }
 }
