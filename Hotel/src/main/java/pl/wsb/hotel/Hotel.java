@@ -108,7 +108,31 @@ public class Hotel implements HotelCapability {
 
     @Override
     public String addNewReservation(String clientId, String roomId, LocalDate date) throws ClientNotFoundException, RoomNotFoundException, RoomReservedException {
-        return null;
+        Client clientFinal = null;
+        Room roomFinal = null;
+        String newReservationId;
+
+        for(Client client : clients){
+            if(client.getId().equals(clientId)){
+                clientFinal = client;
+            }
+            else{
+                throw new ClientNotFoundException("Client not found in database.");
+            }
+        }
+
+        for(Room room : rooms){
+            if(room.getId().equals(roomId)){
+                roomFinal = room;
+            }
+            else{
+                throw new RoomNotFoundException("Room not found in database.");
+            }
+        }
+
+        newReservationId = idGenerator();
+        RoomReservation reservation = new RoomReservation(newReservationId, date, true, clientFinal, roomFinal);
+        return newReservationId;
     }
 
     @Override
