@@ -78,7 +78,10 @@ public class Hotel implements HotelCapability {
 
     @Override
     public String addRoom(double area, int floor, boolean hasKingSizeBed, String description) {
-        return null;
+        String newRoomId = idGenerator();
+        Room room = new Room(newRoomId, description, area, floor, hasKingSizeBed, false, false, 1,false, false);
+        rooms.add(room);
+        return newRoomId;
     }
 
     @Override
