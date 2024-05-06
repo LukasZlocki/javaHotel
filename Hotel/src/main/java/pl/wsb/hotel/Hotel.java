@@ -55,7 +55,12 @@ public class Hotel implements HotelCapability {
 
     @Override
     public String getClientFullName(String clientId) {
-        return null;
+        for (Client client : clients){
+            if(client.getId().equals(clientId)){
+                return client.getFullName();
+            }
+        }
+        return null; // no client with given id found
     }
 
     @Override
