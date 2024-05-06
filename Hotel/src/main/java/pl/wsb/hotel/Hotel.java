@@ -86,7 +86,13 @@ public class Hotel implements HotelCapability {
 
     @Override
     public double getRoomArea(String roomId) {
-        return 0;
+        double roomArea;
+        for (Room room : rooms){
+            if(room.getId().equals(roomId)){
+                return room.getArea();
+            }
+        }
+        return 0; // no room with given roomId
     }
 
     @Override
