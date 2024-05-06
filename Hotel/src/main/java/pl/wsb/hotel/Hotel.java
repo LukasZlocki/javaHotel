@@ -50,6 +50,7 @@ public class Hotel implements HotelCapability {
     public String addClient(String firstName, String lastName, LocalDate birthDate) {
         String newCustomerId = idGenerator();
         Client client = new Client(newCustomerId, firstName, lastName, birthDate, "", 0, "");
+        clients.add(client);
         return newCustomerId;
     }
 
