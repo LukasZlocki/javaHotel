@@ -144,6 +144,7 @@ public class Hotel implements HotelCapability {
         // perform reservation //
         newReservationId = idGenerator();
         RoomReservation reservation = new RoomReservation(newReservationId, date, false, clientFinal, roomFinal);
+        reservations.add(reservation);
         return newReservationId;
     }
 
