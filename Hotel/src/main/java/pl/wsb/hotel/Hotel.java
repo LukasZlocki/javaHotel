@@ -150,7 +150,16 @@ public class Hotel implements HotelCapability {
 
     @Override
     public String confirmReservation(String reservationId) throws ReservationNotFoundException {
-        return null;
+
+        for(RoomReservation reservation : reservations){
+            if(reservation.getReservationId().equals(reservationId)){
+                reservation.confirmReservation();
+            }
+            else{
+                throw new ReservationNotFoundException("Reservation not found.");
+            }
+        }
+        return reservationId;
     }
 
     @Override
