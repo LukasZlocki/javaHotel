@@ -97,7 +97,13 @@ public class Hotel implements HotelCapability {
 
     @Override
     public int getNumberOfRoomsWithKingSizeBed(int floor) {
-        return 0;
+        int roomsWithKingSizeBed = 0;
+        for(Room room : rooms){
+            if(room.getFloor() == floor){
+                roomsWithKingSizeBed++;
+            }
+        }
+        return roomsWithKingSizeBed;
     }
 
     @Override
