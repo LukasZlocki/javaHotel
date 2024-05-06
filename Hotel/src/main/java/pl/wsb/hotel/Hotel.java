@@ -65,7 +65,13 @@ public class Hotel implements HotelCapability {
 
     @Override
     public int getNumberOfUnderageClients() {
-        return 0;
+        int underageClients = 0;
+        for (Client client : clients){
+            if(client.getAge() <= 18){
+                underageClients++;
+            }
+        }
+        return underageClients;
     }
 
     @Override
