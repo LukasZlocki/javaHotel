@@ -36,9 +36,21 @@ public class Hotel implements HotelCapability {
         this.rooms = rooms;
     }
 
+    private String idGenerator(){
+        String newId = "";
+        Random random = new Random();
+
+        for (int i = 0; i < 24; i++) {
+            newId = newId + random.nextInt(10);
+        }
+        return newId;
+    }
+
     @Override
     public String addClient(String firstName, String lastName, LocalDate birthDate) {
-        return null;
+        String newCustomerId = idGenerator();
+        Client client = new Client(newCustomerId, firstName, lastName, birthDate, "", 0, "");
+        return newCustomerId;
     }
 
     @Override
