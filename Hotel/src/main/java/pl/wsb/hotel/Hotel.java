@@ -112,6 +112,7 @@ public class Hotel implements HotelCapability {
         Room roomFinal = null;
         String newReservationId;
 
+        // check if client is in database //
         for(Client client : clients){
             if(client.getId().equals(clientId)){
                 clientFinal = client;
@@ -121,6 +122,7 @@ public class Hotel implements HotelCapability {
             }
         }
 
+        // check if room is in database //
         for(Room room : rooms){
             if(room.getId().equals(roomId)){
                 roomFinal = room;
@@ -130,6 +132,16 @@ public class Hotel implements HotelCapability {
             }
         }
 
+        // check if room is available at specific date //
+        for (RoomReservation reservation : reservations){
+            if(reservation.getDate().equals(date)){
+                if(reservation.getRoom().getId().equals(roomId)){
+                    throw new RoomReservedException(roomId, date);
+                }
+            }
+        }
+
+        // perform reservation //
         newReservationId = idGenerator();
         RoomReservation reservation = new RoomReservation(newReservationId, date, true, clientFinal, roomFinal);
         return newReservationId;
