@@ -213,6 +213,17 @@ public class Hotel implements HotelCapability {
 
     @Override
     public Collection<String> getRoomIdsReservedByClient(String clientId) throws ClientNotFoundException {
-        return null;
+
+        List<String> roomIdsReservedByCustomer = new ArrayList<>();
+
+        if(!isClientInDatabase(clientId)){
+            throw new ClientNotFoundException("Client not found in database.");
+        }
+        for(RoomReservation reservation : reservations){
+            if(reservation.getClient().getId().equals(clientId)){
+                roomIdsReservedByCustomer.add(reservation.getRoom().getId());
+            }
+        }
+        return roomIdsReservedByCustomer;
     }
 }
