@@ -140,41 +140,38 @@ public class Hotel implements HotelCapability {
 
     @Override
     public String addNewReservation(String clientId, String roomId, LocalDate date) throws ClientNotFoundException, RoomNotFoundException, RoomReservedException {
-        Client clientFinal = null;
-        Room roomFinal = null;
-        String newReservationId;
 
         // check if client is in database //
+        if(!isClientInDatabase(clientId)){
+            throw new ClientNotFoundException("Client not found in database.");
+        }
+
+        // check if room is in database //
+        if(!isRoomInDatabase(roomId)){
+            throw new RoomNotFoundException("Room not found in database.");
+        }
+
+        // check if room is available at specific date //
+        if(!isRoomAvailableAtSpecificDate(roomId, date)){
+            throw new RoomReservedException(roomId, date);
+        }
+
+        Client clientFinal = null;
         for(Client client : clients){
             if(client.getId().equals(clientId)){
                 clientFinal = client;
             }
-            else{
-                throw new ClientNotFoundException("Client not found in database.");
-            }
         }
 
-        // check if room is in database //
+        Room roomFinal = null;
         for(Room room : rooms){
             if(room.getId().equals(roomId)){
                 roomFinal = room;
             }
-            else{
-                throw new RoomNotFoundException("Room not found in database.");
-            }
-        }
-
-        // check if room is available at specific date //
-        for (RoomReservation reservation : reservations){
-            if(reservation.getDate().equals(date)){
-                if(reservation.getRoom().getId().equals(roomId)){
-                    throw new RoomReservedException(roomId, date);
-                }
-            }
         }
 
         // perform reservation //
-        newReservationId = idGenerator();
+        String newReservationId = idGenerator();
         RoomReservation reservation = new RoomReservation(newReservationId, date, false, clientFinal, roomFinal);
         reservations.add(reservation);
         return newReservationId;
