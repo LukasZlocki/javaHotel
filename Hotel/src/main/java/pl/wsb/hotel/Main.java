@@ -12,7 +12,7 @@ public class Main {
         Room room1 = new Room("101", "Standard Room", 25.0, 1, true, false, true, 2, true, true);
 
         // create reservation instance //
-        RoomReservation reservation1 = new RoomReservation(LocalDate.of(2024, 4, 4), false, client1, room1);
+        RoomReservation reservation1 = new RoomReservation("ABC123", LocalDate.of(2024, 4, 4), false, client1, room1);
 
         // Basic check of instances //
         System.out.println("customer 1 - basic information:");
