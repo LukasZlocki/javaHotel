@@ -220,7 +220,7 @@ public class Hotel implements HotelCapability {
         if(!isClientInDatabase(clientId)){
             throw new ClientNotFoundException("Client not found in database.");
         }
-        
+
         for(RoomReservation reservation : reservations){
             if(reservation.getClient().getId().equals(clientId)){
                 roomIdsReservedByCustomer.add(reservation.getRoom().getId());
