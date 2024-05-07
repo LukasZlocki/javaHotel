@@ -202,7 +202,13 @@ public class Hotel implements HotelCapability {
 
     @Override
     public int getNumberOfUnconfirmedReservation(LocalDate date) {
-        return 0;
+        int unconfirmedReservations = 0;
+        for(RoomReservation reservation : reservations){
+            if(reservation.getDate().equals(date) && !reservation.isConfirmed() ){
+                unconfirmedReservations++;
+            }
+        }
+        return unconfirmedReservations;
     }
 
     @Override
