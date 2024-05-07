@@ -48,7 +48,7 @@ public class Hotel implements HotelCapability {
     }
 
     // check if room is in database //
-    private boolean isRoomInDatabase(int roomId){
+    private boolean isRoomInDatabase(String roomId){
         for(Room room : rooms){
             if(room.getId().equals(roomId)){
                 return true;
@@ -58,7 +58,7 @@ public class Hotel implements HotelCapability {
     }
 
     // check if room is available at specific date //
-    private boolean isRoomAvailableAtSpecificDate(int roomId, LocalDate date){
+    private boolean isRoomAvailableAtSpecificDate(String roomId, LocalDate date){
         for (RoomReservation reservation : reservations){
             if(reservation.getDate().equals(date)){
                 if(reservation.getRoom().getId().equals(roomId)){
@@ -67,6 +67,16 @@ public class Hotel implements HotelCapability {
             }
         }
         return true;
+    }
+
+    // check if client is in database //
+    private boolean isClientInDatabase(String clientId){
+        for(Client client : clients){
+            if(client.getId().equals(clientId)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
