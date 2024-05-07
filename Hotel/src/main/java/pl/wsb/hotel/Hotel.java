@@ -47,6 +47,16 @@ public class Hotel implements HotelCapability {
         return newId;
     }
 
+    // check if room is in database
+    private boolean isRoomInDatabase(int roomId){
+        for(Room room : rooms){
+            if(room.getId().equals(roomId)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String addClient(String firstName, String lastName, LocalDate birthDate) {
         String newCustomerId = idGenerator();
@@ -164,6 +174,13 @@ public class Hotel implements HotelCapability {
 
     @Override
     public boolean isRoomReserved(String roomId, LocalDate date) throws RoomNotFoundException {
+        for(RoomReservation reservation : reservations){
+            if(reservation.getDate().equals(date)){
+                if(reservation.getRoom().getId().equals(roomId)){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
