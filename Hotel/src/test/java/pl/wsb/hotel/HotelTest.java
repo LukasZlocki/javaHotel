@@ -20,6 +20,12 @@ public class HotelTest {
         Assertions.assertEquals("client1firstname client1lastname", client1.getFullName());
     }
 
+    @Test
+    void testAddRoomToHotelAndCheckIfTheSameArea(){
+        String roomId = hotel1.addRoom(99.12, 5, false, "testroom4");
+        Assertions.assertEquals(99.12, hotel1.getRoomArea(roomId));
+    }
+
 
     @Test
     void simpleTest(){
