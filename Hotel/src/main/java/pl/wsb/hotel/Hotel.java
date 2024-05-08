@@ -131,7 +131,9 @@ public class Hotel implements HotelCapability {
         int roomsWithKingSizeBed = 0;
         for(Room room : rooms){
             if(room.getFloor() == floor){
-                roomsWithKingSizeBed++;
+                if(room.hasKingSizeBed()) {
+                    roomsWithKingSizeBed++;
+                }
             }
         }
         return roomsWithKingSizeBed;
