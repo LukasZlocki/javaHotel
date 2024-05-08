@@ -15,17 +15,24 @@ public class HotelTest {
     Client client3 = new Client("33", "client3firstname", "client3lastname", LocalDate.of(1969, Month.AUGUST, 13), "USA", 33333333, "client3@thismail.com");
     Hotel hotel1 = new Hotel("hotel1");
 
+
+
     @Test
-    void testFullNameConsistWithFirstAndSecondName(){
-        Assertions.assertEquals("client1firstname client1lastname", client1.getFullName());
+    void testAddClient(){
+        String clientId = hotel1.addClient("client1firstname", "client1lastname", LocalDate.of(1999, Month.AUGUST, 12))
+        Assertions.assertEquals("client1firstname client1lastname", hotel1.getClientFullName(clientId));
     }
 
     @Test
-    void testAddRoomToHotelAndCheckIfTheSameArea(){
+    void testAddRoomToHotelAndCheckIfGeneratedIdCoversAddedRoom(){
         String roomId = hotel1.addRoom(99.12, 5, false, "testroom4");
         Assertions.assertEquals(99.12, hotel1.getRoomArea(roomId));
     }
 
+    @Test
+    void testFullNameConsistWithFirstAndSecondName(){
+        Assertions.assertEquals("client1firstname client1lastname", client1.getFullName());
+    }
 
     @Test
     void simpleTest(){
