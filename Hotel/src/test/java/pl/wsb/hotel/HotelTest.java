@@ -63,7 +63,15 @@ public class HotelTest {
         Assertions.assertEquals(2, hotelKingSize.getNumberOfRoomsWithKingSizeBed(1));
     }
 
-    
+    @Test
+    void testNoRoomsWithKingSizeBed(){
+        Hotel hotelNoKingSize = new Hotel("KingSizeTest");
+        String kingSize1RoomId = hotelNoKingSize.addRoom(45.20, 1, false, "testroomarea");
+        String kingSize2RoomId = hotelNoKingSize.addRoom(25.20, 1, false, "testroomarea");
+        Assertions.assertEquals(0, hotelNoKingSize.getNumberOfRoomsWithKingSizeBed(1));
+    }
+
+
 
 
 
