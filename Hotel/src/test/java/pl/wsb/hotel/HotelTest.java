@@ -3,6 +3,7 @@ package pl.wsb.hotel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.wsb.hotel.exceptions.ClientNotFoundException;
+import pl.wsb.hotel.exceptions.ReservationNotFoundException;
 import pl.wsb.hotel.exceptions.RoomNotFoundException;
 
 import java.time.LocalDate;
@@ -136,6 +137,30 @@ public class HotelTest {
     }
     */
 
+    @Test
+    void testConfirmReservationByFailedReservationId(){
+        // Arrange //
+        Hotel hotel = new Hotel("Reservation Test");
+        ReservationNotFoundException exception = assertThrows(ReservationNotFoundException.class, () -> {
+            hotel.confirmReservation("falseReservationId");
+        });
+
+        // Assert //
+        assertEquals("Reservation not found.", exception.getMessage());
+    }
+
+    @Test
+    void testConfirmReservationByReservationId() throws ClientNotFoundException, RoomNotFoundException {
+        // Arrange //
+        Client client1 = new Client("11", "client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11), "Poland", 11111111, "client1@thismail.com");
+        Room room1 = new Room("1111", "room1", 25.10, 1, true, true, true, 1, true, true );
+        Hotel hotel = new Hotel("Reservation Test");
+        String clientId = hotel.addClient("client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11));
+        String roomId = hotel.addRoom(45.20, 1, true, "testroomarea");
+        String reservationId = hotel.addNewReservation(clientId, roomId,LocalDate.of(2023, Month.AUGUST, 11));
+        // Act & Assert //
+        assertEquals(reservationId, hotel.confirmReservation(reservationId));
+    }
 }
 
 
