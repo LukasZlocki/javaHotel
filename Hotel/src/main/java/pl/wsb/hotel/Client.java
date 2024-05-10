@@ -54,6 +54,9 @@ public class Client {
         if (this.birthDate == null) {
             return 0; // nadano specjalne znaczenie, dodac obsluge wyjatku. A co gdy dat w przyszlosci ? co sie stanie jak dzialac.
         }
+        if (LocalDate.now().getYear() - this.birthDate.getYear() < 0) {
+            return 0; // nadano specjalne znaczenie, dodac obsluge wyjatku. A co gdy dat w przyszlosci ? co sie stanie jak dzialac.
+        }
         return LocalDate.now().getYear() - this.birthDate.getYear();
 
     }
