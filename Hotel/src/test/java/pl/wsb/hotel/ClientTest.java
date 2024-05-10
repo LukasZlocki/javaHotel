@@ -11,89 +11,134 @@ public class ClientTest {
 
     @Test
     void testReturnId(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals("111", client.getId());
-        assertEquals("clientunderagefirstname", client.getFirstName());
+
+        // When
+        String clientId = client.getId();
+        String clientFirstName = client.getFirstName();
+
+        // Then
+        assertEquals("111", clientId);
+        assertEquals("clientunderagefirstname", clientFirstName);
     }
     @Test
     void testReturnFirstName(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals("clientunderagefirstname", client.getFirstName());
+
+        // When
+        String clientFirstName = client.getFirstName();
+
+        // Then
+        assertEquals("clientunderagefirstname", clientFirstName);
     }
 
     @Test
     void testReturnLastName(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals("clientunderagelastname", client.getLastName());
+
+        // When
+        String clientLastName = client.getLastName();
+
+        // Then
+        assertEquals("clientunderagelastname", clientLastName);
     }
 
     @Test
     void testgetBirthDate(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals(LocalDate.of(2020, Month.AUGUST, 12), client.getBirthDate());
+
+        // When
+        LocalDate dateBirth = client.getBirthDate();
+
+        // Then
+        assertEquals(LocalDate.of(2020, Month.AUGUST, 12), dateBirth);
     }
 
     @Test
     void testGetCountry(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals("Poland", client.getCountry());
+
+        // When
+        String country = client.getCountry();
+
+        // Then
+        assertEquals("Poland", country);
     }
 
     @Test
     void testGetNumberPhone(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals(1234567, client.getNumberPhone());
+
+        // When
+        int phoneNb = client.getNumberPhone();
+
+        // Then
+        assertEquals(1234567, phoneNb);
     }
 
     @Test
     void testGetEmail(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals("thisemail@mail.com", client.getEmail());
+
+        // When
+        String email = client.getEmail();
+
+        // Then
+        assertEquals("thisemail@mail.com", email);
     }
 
     @Test
     void testGetAge(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals(4, client.getAge());
+
+        // When
+        int age = client.getAge();
+
+        // Then
+        assertEquals(4, age);
     }
 
     @Test
     void testNullGetAge(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", null, "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals(0, client.getAge());
+
+        // When
+        int age = client.getAge();
+
+        // Then
+        assertEquals(0, age);
     }
 
     @Test
     void testGetAgeButInFuture(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2027, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
+
+        // When
+        int age = client.getAge();
+
+        // Then
         assertEquals(0, client.getAge());
     }
 
     @Test
     void testGetFullName(){
-        // Arrange
+        // Given
         Client client = new Client("111", "clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12), "Poland", 1234567, "thisemail@mail.com");
-        // Assert
-        assertEquals("clientunderagefirstname clientunderagelastname", client.getFullName());
+
+        // When
+        String fullName =  client.getFullName();
+
+        // Then
+        assertEquals("clientunderagefirstname clientunderagelastname",fullName);
     }
 }
