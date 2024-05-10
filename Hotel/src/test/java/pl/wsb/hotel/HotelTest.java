@@ -19,136 +19,189 @@ public class HotelTest {
 
     @Test
     void testAddingClientAndCheckIfGeneratedIdCoversAddedClient(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("hotel");
         String clientId = hotel.addClient("client1firstname", "client1lastname", LocalDate.of(1997, Month.AUGUST, 12));
-        // Assert //
-        assertEquals("client1firstname client1lastname", hotel.getClientFullName(clientId));
+
+        // When
+        String fullNameOfImplementedClient = hotel.getClientFullName(clientId);
+
+        // Then
+        assertEquals("client1firstname client1lastname", fullNameOfImplementedClient);
     }
 
     @Test
     void testFullNameConsistWithFirstAndSecondName(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("hotel");
         String clientId = hotel.addClient("client1firstname", "client1lastname", LocalDate.of(1997, Month.AUGUST, 12));
-        // Assert //
-        assertEquals("client1firstname client1lastname", hotel.getClientFullName(clientId));
+
+        // When
+        String clientFullName = hotel.getClientFullName(clientId);
+
+        // Then
+        assertEquals("client1firstname client1lastname", clientFullName);
     }
 
     @Test
     void testNullWhenNoClientWithGivenClientId(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("hotel");
-        // Assert //
-        Assertions.assertNull(null, hotel.getClientFullName("falseClientId"));
+        String falseClientId = "falseClientId";
+
+        // When
+        var falseClient = hotel.getClientFullName(falseClientId);
+
+        // Then
+        Assertions.assertNull(null, falseClient);
     }
 
     @Test
     void testCalculatingUnderageClients(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("hotel");
         String underageClientId = hotel.addClient("clientunderagefirstname", "clientunderagelastname", LocalDate.of(2020, Month.AUGUST, 12));
-        // Assert //
-        assertEquals(1, hotel.getNumberOfUnderageClients());
+
+        // When
+        int clientQuantity = hotel.getNumberOfUnderageClients();
+
+        // Then
+        assertEquals(1, clientQuantity );
     }
 
     @Test
     void testAddRoomToHotelAndCheckIfGeneratedIdCoversAddedRoom(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("hotel");
         String roomId = hotel.addRoom(99.12, 5, false, "testroom");
-        // Assert //
-        assertEquals(99.12, hotel.getRoomArea(roomId));
+
+        // When
+        double roomArea = hotel.getRoomArea(roomId);
+
+        // Then
+        assertEquals(99.12, roomArea);
     }
 
     @Test
     void testGetRoomAreaByRoomId(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("hotel");
         String areaRoomId = hotel.addRoom(100.20, 3, false, "testroomarea");
-        // Assert //
-        assertEquals(100.20, hotel.getRoomArea(areaRoomId));
+
+        // When
+        double roomArea = hotel.getRoomArea(areaRoomId);
+
+        // Then
+        assertEquals(100.20, roomArea);
     }
 
     @Test
     void testGetRoomAreaByFalseRoomId(){
-        // Assert //
+        // Given
         Hotel hotel = new Hotel("hotel");
-        assertEquals(0, hotel.getRoomArea("falseRoomId"));
+        String falseRoomId = "falseRoomId";
+
+        // When
+        double returnValue = hotel.getRoomArea(falseRoomId);
+
+        // Then
+        assertEquals(0, returnValue);
     }
 
     @Test
     void testGetNumberOfRoomsWithKingSizeBed(){
-        // Arrange //
+        // Given
         Hotel hotelKingSize = new Hotel("KingSizeTest");
         String kingSize1RoomId = hotelKingSize.addRoom(45.20, 1, true, "testroomarea");
         String kingSize2RoomId = hotelKingSize.addRoom(25.20, 1, true, "testroomarea");
-        // Assert //
-        assertEquals(2, hotelKingSize.getNumberOfRoomsWithKingSizeBed(1));
+
+        // When
+        int floor = 1;
+        int kingSizeBedQuantity = hotelKingSize.getNumberOfRoomsWithKingSizeBed(floor);
+
+        // Then
+        assertEquals(2, kingSizeBedQuantity);
     }
 
     @Test
     void testRoomsWithNoKingSizeBed(){
-        // Arrange //
+        // Given
         Hotel hotelNoKingSize = new Hotel("KingSizeTest");
         String kingSize1RoomId = hotelNoKingSize.addRoom(45.20, 1, false, "testroomarea");
         String kingSize2RoomId = hotelNoKingSize.addRoom(25.20, 1, false, "testroomarea");
-        // Assert //
-        assertEquals(0, hotelNoKingSize.getNumberOfRoomsWithKingSizeBed(1));
+
+        // When
+        int floor = 1;
+        int kingSizeBedQuantity = hotelNoKingSize.getNumberOfRoomsWithKingSizeBed(floor);
+
+        // Then
+        assertEquals(0, kingSizeBedQuantity);
     }
 
     @Test
     void testAddReservationWithNoValidCustomerId(){
-        // Arrange
+        // Given
         Hotel hotel = new Hotel("hotel");
+
+        // When
         ClientNotFoundException exception = assertThrows(ClientNotFoundException.class, () -> {
             hotel.addNewReservation("falseClientId", "falseRoomId", LocalDate.of(2020, Month.AUGUST, 12));
         });
-        // Assert //
+
+        // Then
         assertEquals("Client not found in database.", exception.getMessage());
     }
 
 
     @Test
     void testAddReservationWithNoValidRoomId() throws RoomNotFoundException{
-        // Arrange
+        // Given
         Hotel hotel = new Hotel("reservationTest");
+
+        // When
         String clientId = hotel.addClient("client1firstname", "client1lastname", LocalDate.of(1997, Month.AUGUST, 12));
         RoomNotFoundException exception = assertThrows(RoomNotFoundException.class, () -> {
             hotel.addNewReservation(clientId , "falseRoomId", LocalDate.of(2020, Month.AUGUST, 12));
         });
-        // Assert //
+
+        // Then
         assertEquals("Room not found in database.", exception.getMessage());
     }
 
     @Test
     void testConfirmReservationByFailedReservationId(){
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("Reservation Test");
+
+        // When
         ReservationNotFoundException exception = assertThrows(ReservationNotFoundException.class, () -> {
             hotel.confirmReservation("falseReservationId");
         });
 
-        // Assert //
+        // Then
         assertEquals("Reservation not found.", exception.getMessage());
     }
 
     @Test
     void testConfirmReservationByReservationId() throws ClientNotFoundException, RoomNotFoundException {
-        // Arrange //
+        // Given
         Client client1 = new Client("11", "client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11), "Poland", 11111111, "client1@thismail.com");
         Room room1 = new Room("1111", "room1", 25.10, 1, true, true, true, 1, true, true );
         Hotel hotel = new Hotel("Reservation Test");
         String clientId = hotel.addClient("client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11));
         String roomId = hotel.addRoom(45.20, 1, true, "testroomarea");
         String reservationId = hotel.addNewReservation(clientId, roomId,LocalDate.of(2023, Month.AUGUST, 11));
-        // Act & Assert //
-        assertEquals(reservationId, hotel.confirmReservation(reservationId));
+
+        // When
+        String reservation = hotel.confirmReservation(reservationId);
+
+        // Then
+        assertEquals(reservationId, reservation);
     }
 
     @Test
     void testIsRoomReservedByGoodRoomIdAndDateWhereRoomIsNotAvailable() throws ClientNotFoundException, RoomNotFoundException {
-        // Arrange //
+        // Given
         Client client1 = new Client("11", "client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11), "Poland", 11111111, "client1@thismail.com");
         Room room1 = new Room("1111", "room1", 25.10, 1, true, true, true, 1, true, true );
         Hotel hotel = new Hotel("Reservation Test");
@@ -156,13 +209,16 @@ public class HotelTest {
         String roomId = hotel.addRoom(45.20, 1, true, "testroomarea");
         String reservationId = hotel.addNewReservation(clientId, roomId,LocalDate.of(2023, Month.AUGUST, 11));
 
-        // Assert
-        assertTrue(hotel.isRoomReserved(roomId, LocalDate.of(2023, Month.AUGUST, 11)));
+        // When
+        LocalDate date = LocalDate.of(2023, Month.AUGUST, 11);
+
+        // Then
+        assertTrue(hotel.isRoomReserved(roomId, date));
     }
 
     @Test
     void testIsRoomReservedByGoodRoomIdAndDateWhereRoomIsAvailable() throws ClientNotFoundException, RoomNotFoundException {
-        // Arrange //
+        // Given
         Client client1 = new Client("11", "client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11), "Poland", 11111111, "client1@thismail.com");
         Room room1 = new Room("1111", "room1", 25.10, 1, true, true, true, 1, true, true );
         Hotel hotel = new Hotel("Reservation Test");
@@ -170,13 +226,16 @@ public class HotelTest {
         String roomId = hotel.addRoom(45.20, 1, true, "testroomarea");
         String reservationId = hotel.addNewReservation(clientId, roomId,LocalDate.of(2022, Month.AUGUST, 11));
 
-        // Assert
-        assertFalse(hotel.isRoomReserved(roomId, LocalDate.of(2023, Month.AUGUST, 11)));
+        // When
+        LocalDate date = LocalDate.of(2023, Month.AUGUST, 11);
+
+        // Then
+        assertFalse(hotel.isRoomReserved(roomId,date));
     }
 
     @Test
     void testGettingNumbersOfUnconfirmedReservations() throws ClientNotFoundException, RoomNotFoundException {
-        // Arrange //
+        // Given
         Client client1 = new Client("11", "client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11), "Poland", 11111111, "client1@thismail.com");
         Room room1 = new Room("1111", "room1", 25.10, 1, true, true, true, 1, true, true );
         Hotel hotel = new Hotel("Reservation Test");
@@ -184,13 +243,17 @@ public class HotelTest {
         String roomId = hotel.addRoom(45.20, 1, true, "testroomarea");
         String reservationId = hotel.addNewReservation(clientId, roomId,LocalDate.of(2022, Month.AUGUST, 11));
 
-        // Assert
-        assertEquals(1, hotel.getNumberOfUnconfirmedReservation(LocalDate.of(2022, Month.AUGUST, 11)));
+        // When
+        LocalDate date = LocalDate.of(2022, Month.AUGUST, 11);
+        int confirmedReservation = hotel.getNumberOfUnconfirmedReservation(date);
+
+        // Then
+        assertEquals(1, confirmedReservation);
     }
 
     @Test
     void testGetRoomIdsReservedByClient() throws ClientNotFoundException, RoomNotFoundException {
-        // Arrange //
+        // Given
         Hotel hotel = new Hotel("Reservation Test");
         String clientId = hotel.addClient("client1firstname", "client1lastname", LocalDate.of(2019, Month.AUGUST, 11));
         String roomId = hotel.addRoom(45.20, 1, true, "testroomarea");
@@ -198,15 +261,14 @@ public class HotelTest {
         String reservationId2 = hotel.addNewReservation(clientId, roomId,LocalDate.of(2021, Month.AUGUST, 11));
         String reservationId3 = hotel.addNewReservation(clientId, roomId,LocalDate.of(2020, Month.AUGUST, 11));
 
-        // Act //
+        // When
         Collection<String> clientRoomsIds = new ArrayList<>();
         clientRoomsIds = hotel.getRoomIdsReservedByClient(clientId);
+        int roomsReservedByClient = hotel.getRoomIdsReservedByClient(clientId).size();
 
-        // Assert //
-        assertEquals(3, hotel.getRoomIdsReservedByClient(clientId).size());
+        // Then
+        assertEquals(3, roomsReservedByClient);
     }
-
-
 }
 
 
